@@ -96,15 +96,18 @@ jobs:
         VERSION_NO_V=${VERSION#v}
         aws eks update-kubeconfig --region ${{ secrets.AWS_REGION }} --name ${{ secrets.EKS_DEV_CLUSTER }}
         kubectl version
-        kubectl set image -n testnet-dev deployment/intent-api intent-api=crestal/intentkit:${VERSION_NO_V}
-        kubectl set image -n testnet-dev deployment/intent-readonly intent-readonly=crestal/intentkit:${VERSION_NO_V}
-        kubectl set image -n testnet-dev deployment/intent-autonomous intent-autonomous=crestal/intentkit:${VERSION_NO_V}
-        kubectl set image -n testnet-dev deployment/intent-tg intent-tg=crestal/intentkit:${VERSION_NO_V}
-        kubectl set image -n testnet-dev deployment/intent-scheduler intent-scheduler=crestal/intentkit:${VERSION_NO_V}
+        kubectl set image -n testnet-dev deployment/intent-api intent-api=crestal/intentkit:${VERSION_NO_V
         kubectl set image -n testnet-dev deployment/intent-checker intent-checker=crestal/intentkit:${VERSION_NO_V}
         kubectl set image -n testnet-dev deployment/intent-singleton intent-singleton=crestal/intentkit:${VERSION_NO_V}
      
-    - name: Deploy to Amazon EKS Prod
+    - name: Deploy to
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps: Amazon EKS Prod
       if: ${{ github.event_name == 'release' && github.event.action == 'released' }}
       run: |
         VERSION=${{ github.event.release.tag_name }}
