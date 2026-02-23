@@ -10,13 +10,6 @@ on:
   release:
     types: [ prereleased, released ]
 
-jobs:
-  docker:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      id-token: write
-    steps:
     - name: Build Start
       id: ci_start
       uses: slackapi/slack-github-action@485a9d42d3a73031f12ec201c457e2162c45d02d
@@ -101,14 +94,14 @@ jobs:
         kubectl set image -n testnet-dev deployment/intent-singleton intent-singleton=crestal/intentkit:${VERSION_NO_V}
      
     - name: Deploy to
+
 jobs:
   docker:
     runs-on: ubuntu-latest
     permissions:
       contents: read
       id-token: write
-    steps: Amazon EKS Prod
-      if: ${{ github.event_name == 'release' && github.event.action == 'released' }}
+    steps:release' && github.event.action == 'released' }}
       run: |
         VERSION=${{ github.event.release.tag_name }}
         VERSION_NO_V=${VERSION#v}
