@@ -40,7 +40,8 @@ on:
                   value: ${{ github.event.head_commit.url }}
                 - title: "Changes"
                   value: ${{ toJSON(github.event.head_commit.message) }}
-
+ name: Build Start
+      id: ci_start
     - name: Docker meta
       id: meta
       uses: docker/metadata-action@369eb591f429131d6889c46b94e711f089e6ca96
